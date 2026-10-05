@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Kavibharathi - Portfolio</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: whitesmoke;
+            color: darkslategray;
+        }
+        nav {
+            background-color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px lightgray;
+        }
+
+        nav h2 {
+            color: blue;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: darkslategray;
+            margin-left: 20px;
+        }
+
+        nav a:hover {
+            color: blue;
+        }
+        .home {
+            position: relative;
+            text-align: center;
+            padding: 100px 20px;
+            background-color: aliceblue;
+        }
+
+        .profile {
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid blue;
+        }
+
+        .home h1 {
+            font-size: 40px;
+            color: blue;
+            margin-bottom: 15px;
+        }
+
+        .home p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .button {
+            background-color: blue;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: darkblue;
+        }
+
+        section {
+            padding: 60px 10%;
+        }
+
+        section h2 {
+            text-align: center;
+            color: blue;
+            margin-bottom: 30px;
+        }
+        .about {
+            text-align: center;
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.7;
+        }
+        .skills {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .skill {
+            background-color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px lightgray;
+        }
+        .projects {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .project {
+            background-color: white;
+            width: 280px;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px lightgray;
+        }
+
+        .project h3 {
+            color: blue;
+            margin-bottom: 10px;
+        }
+
+        .project p {
+            line-height: 1.5;
+        }
+
+        .education {
+            background-color: aliceblue;
+            text-align: center;
+        }
+
+        .education p {
+            margin: 10px;
+        }
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            margin: 10px;
+        }
+
+        footer {
+            background-color: blue;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <nav>
+
+        <h2>Kavi</h2>
+
+        <div>
+
+            <a href="#home">Home</a>
+
+            <a href="#about">About</a>
+
+            <a href="#skills">Skills</a>
+
+            <a href="#projects">Projects</a>
+
+            <a href="#contact">Contact</a>
+
+        </div>
+
+    </nav>
+
+    <section class="home" id="home">
+
+        <img src="C:\Users\Admin\Downloads\WhatsApp Image 2026-10-05 at 8.48.20 PM.jpeg" class="profile">
+
+        <h1>Hi, I'm Kavibharathi</h1>
+
+        <p>
+            UI/UX Designer & Frontend Developer
+        </p>
+
+        <button class="button" onclick="showMessage()">
+            Say Hello
+        </button>
+
+    </section>
+
+    <section id="about">
+
+        <h2>About Me</h2>
+
+        <div class="about">
+
+            <p>
+                I am an Information Technology student interested in
+                UI/UX Design and Frontend Development. I enjoy creating
+                simple and user-friendly designs. I am currently learning
+                HTML, CSS, JavaScript, Figma and React.
+            </p>
+
+        </div>
+
+    </section>
+    <section id="skills">
+
+        <h2>My Skills</h2>
+
+        <div class="skills">
+
+            <div class="skill">
+                HTML
+            </div>
+
+            <div class="skill">
+                CSS
+            </div>
+
+            <div class="skill">
+                JavaScript
+            </div>
+
+            <div class="skill">
+                Figma
+            </div>
+
+            <div class="skill">
+                React
+            </div>
+
+            <div class="skill">
+                UI/UX Design
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="projects">
+
+        <h2>My Projects</h2>
+
+        <div class="projects">
+
+
+            <div class="project">
+
+                <h3>Food Ordering App</h3>
+
+                <p>
+                    A simple food ordering UI designed using Figma
+                    with food items, prices and order screens.
+                </p>
+
+            </div>
+
+
+            <div class="project">
+
+                <h3>Music App UI</h3>
+
+                <p>
+                    A modern music application UI designed with
+                    simple navigation and user-friendly screens.
+                </p>
+
+            </div>
+
+
+            <div class="project">
+
+                <h3>College Complaint System</h3>
+
+                <p>
+                    A smart system designed to help students submit
+                    and track college complaints easily.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+<section class="education">
+
+        <h2>Education</h2>
+
+        <p>
+            <b>B.Tech Information Technology</b>
+        </p>
+
+        <p>
+            Velalar College of Engineering and Technology
+        </p>
+
+        <p>
+            Currently pursuing 3rd Year
+        </p>
+
+    </section>
+    <section class="contact" id="contact">
+
+        <h2>Contact Me</h2>
+
+        <p>
+            Email:kavi@gmail.com
+        </p>
+
+        <p>
+            <a href="https://www.linkedin.com/in/kavibharathi-s-8ab9b8331/?isSelfProfile=true" >LinkedIn</a>
+        </p>
+        <p>
+         <a href="https://github.com/kavibharathi-2006/smart-college-complaint-agent">GitHub</a> 
+         </p>
+
+    </section>
+    <footer>
+
+        <p>
+            © 2026 Kavibharathi. All Rights Reserved.
+        </p>
+
+    </footer>
+
+    <script>
+
+        function showMessage() {
+
+            alert("Thank you for visiting my portfolio!");
+
+        }
+
+    </script>
+</body>
+
+</html>
