@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Twitter App</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: whitesmoke;
+            color: black;
+        }
+
+        .login-page {
+            width: 350px;
+            margin: 100px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .login-page h1 {
+            color: purple;
+            margin-bottom: 20px;
+        }
+
+        .login-page input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
+
+        .login-page button {
+            width: 100%;
+            padding: 12px;
+            background-color: purple;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-page p {
+            margin-top: 15px;
+            color: red;
+        }
+
+        nav {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: purple;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkviolet;
+        }
+
+        .post-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            resize: none;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .post {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+
+        .post h3 {
+            color: purple;
+            margin-bottom: 10px;
+        }
+
+        .post p {
+            margin-bottom: 15px;
+        }
+
+        .like-button {
+            background-color: white;
+            color: purple;
+            border: 1px solid purple;
+        }
+
+        .like-count {
+            margin-left: 5px;
+            color: gray;
+        }
+
+        .comment-box {
+            margin-top: 15px;
+        }
+
+        .comment-box input {
+            padding: 10px;
+            width: 70%;
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
+
+        .comments {
+            margin-top: 10px;
+        }
+
+        .comments p {
+            background-color: lavender;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        .section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .user {
+            padding: 15px;
+            border-bottom: 1px solid lightgray;
+            cursor: pointer;
+        }
+
+        .user:hover {
+            background-color: lavender;
+        }
+
+        .user h3 {
+            margin-bottom: 5px;
+        }
+
+        .profile {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile h2 {
+            color: purple;
+            margin-bottom: 10px;
+        }
+
+        .profile-count {
+            margin: 15px 0;
+        }
+
+        .profile-count span {
+            margin: 0 10px;
+        }
+
+        .follow-button {
+            background-color: purple;
+        }
+
+        .logout {
+            background-color: red;
+        }
+
+        .back-button {
+            background-color: gray;
+            margin-bottom: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="loginPage" class="login-page">
+
+        <h1>My Twitter</h1>
+
+        <input type="text" id="username" placeholder="Username">
+
+        <input type="password" id="password" placeholder="Password">
+
+        <button onclick="login()">Login</button>
+
+        <p id="loginMessage"></p>
+
+    </div>
+
+
+    <div id="appPage" class="hidden">
+
+        <nav>
+            <h1>My Twitter</h1>
+        </nav>
+
+
+        <div class="container">
+
+            <div class="buttons">
+
+                <button onclick="showHome()">
+                    Home
+                </button>
+
+                <button onclick="showFollowers()">
+                    Followers
+                </button>
+
+                <button onclick="showFollowing()">
+                    Following
+                </button>
+
+                <button onclick="showMyProfile()">
+                    My Profile
+                </button>
+
+                <button class="logout" onclick="logout()">
+                    Logout
+                </button>
+
+            </div>
+
+
+            <div id="homeSection">
+
+                <div class="post-box">
+
+                    <h2>Create Post</h2>
+
+                    <textarea id="postText"
+                    placeholder="What's happening?"></textarea>
+
+                    <button onclick="createPost()">
+                        Post
+                    </button>
+
+                </div>
+
+
+                <div id="postsArea">
+
+                    <div class="post">
+
+                        <h3>Priya</h3>
+
+                        <p>
+                            Today I completed my UI/UX design project! 🎨
+                        </p>
+
+                        <button class="like-button"
+                        onclick="likePost(this)">
+                            ❤️ Like
+                        </button>
+
+                        <span class="like-count">
+                            0 Likes
+                        </span>
+
+                        <div class="comment-box">
+
+                            <input type="text"
+                            placeholder="Write a comment">
+
+                            <button onclick="addComment(this)">
+                                Comment
+                            </button>
+
+                        </div>
+
+                        <div class="comments"></div>
+
+                    </div>
+
+
+                    <div class="post">
+
+                        <h3>Rahul</h3>
+
+                        <p>
+                            Started learning JavaScript today! 💻
+                        </p>
+
+                        <button class="like-button"
+                        onclick="likePost(this)">
+                            ❤️ Like
+                        </button>
+
+                        <span class="like-count">
+                            0 Likes
+                        </span>
+
+                        <div class="comment-box">
+
+                            <input type="text"
+                            placeholder="Write a comment">
+
+                            <button onclick="addComment(this)">
+                                Comment
+                            </button>
+
+                        </div>
+
+                        <div class="comments"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div id="followersSection" class="hidden">
+
+                <div class="section">
+
+                    <h2>My Followers</h2>
+
+                    <div class="user"
+                    onclick="showProfile('Priya')">
+
+                        <h3>Priya</h3>
+                        <p>@priya123</p>
+
+                    </div>
+
+                    <div class="user"
+                    onclick="showProfile('Rahul')">
+
+                        <h3>Rahul</h3>
+                        <p>@rahul456</p>
+
+                    </div>
+
+                    <div class="user"
+                    onclick="showProfile('Anu')">
+
+                        <h3>Anu</h3>
+                        <p>@anu789</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div id="followingSection" class="hidden">
+
+                <div class="section">
+
+                    <h2>People I Follow</h2>
+
+                    <div id="followingList">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div id="profileSection" class="hidden">
+
+                <button class="back-button"
+                onclick="showHome()">
+                    ← Back
+                </button>
+
+                <div class="profile">
+
+                    <h2 id="profileName"></h2>
+
+                    <p id="profileUsername"></p>
+
+                    <div class="profile-count">
+
+                        <span>
+                            Followers:
+                            <b id="followersCount">0</b>
+                        </span>
+
+                        <span>
+                            Following:
+                            <b id="followingCount">0</b>
+                        </span>
+
+                    </div>
+
+                    <button id="followButton"
+                    class="follow-button"
+                    onclick="followUser()">
+                        Follow
+                    </button>
+
+                </div>
+
+                <div id="profilePosts"></div>
+
+            </div>
+
+
+            <div id="myProfileSection" class="hidden">
+
+                <div class="profile">
+
+                    <h2>Kavibharathi</h2>
+
+                    <p>@kavi</p>
+
+                    <div class="profile-count">
+
+                        <span>
+                            Followers:
+                            <b id="myFollowersCount">3</b>
+                        </span>
+
+                        <span>
+                            Following:
+                            <b id="myFollowingCount">0</b>
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <h2>My Posts</h2>
+
+                <div id="myPosts"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        let following = [];
+
+        let followers = ["Priya", "Rahul", "Anu"];
+
+        let userPosts = {
+
+            Priya: [
+                "Today I completed my UI/UX design project! 🎨",
+                "Learning Figma is really interesting!"
+            ],
+
+            Rahul: [
+                "Started learning JavaScript today! 💻",
+                "JavaScript functions are easy to understand!"
+            ],
+
+            Anu: [
+                "Had a great day at college! 😊",
+                "Working on my new project."
+            ]
+
+        };
+
+
+        function login() {
+
+            let username =
+            document.getElementById("username").value;
+
+            let password =
+            document.getElementById("password").value;
+
+            if (username == "kavi" && password == "1234") {
+
+                document.getElementById("loginPage")
+                .classList.add("hidden");
+
+                document.getElementById("appPage")
+                .classList.remove("hidden");
+
+            } else {
+
+                document.getElementById("loginMessage")
+                .innerText =
+                "Wrong username or password";
+
+            }
+
+        }
+
+
+        function logout() {
+
+            document.getElementById("appPage")
+            .classList.add("hidden");
+
+            document.getElementById("loginPage")
+            .classList.remove("hidden");
+
+            document.getElementById("username").value = "";
+
+            document.getElementById("password").value = "";
+
+        }
+
+
+        function hideAll() {
+
+            document.getElementById("homeSection")
+            .classList.add("hidden");
+
+            document.getElementById("followersSection")
+            .classList.add("hidden");
+
+            document.getElementById("followingSection")
+            .classList.add("hidden");
+
+            document.getElementById("profileSection")
+            .classList.add("hidden");
+
+            document.getElementById("myProfileSection")
+            .classList.add("hidden");
+
+        }
+
+
+        function showHome() {
+
+            hideAll();
+
+            document.getElementById("homeSection")
+            .classList.remove("hidden");
+
+        }
+
+
+        function showFollowers() {
+
+            hideAll();
+
+            document.getElementById("followersSection")
+            .classList.remove("hidden");
+
+        }
+
+
+        function showFollowing() {
+
+            hideAll();
+
+            document.getElementById("followingSection")
+            .classList.remove("hidden");
+
+            showFollowingList();
+
+        }
+
+
+        function showFollowingList() {
+
+            let list =
+            document.getElementById("followingList");
+
+            list.innerHTML = "";
+
+            if (following.length == 0) {
+
+                list.innerHTML =
+                "<p>You are not following anyone.</p>";
+
+                return;
+
+            }
+
+            following.forEach(function(name) {
+
+                list.innerHTML += `
+
+                    <div class="user"
+                    onclick="showProfile('${name}')">
+
+                        <h3>${name}</h3>
+
+                        <p>@${name.toLowerCase()}123</p>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
+
+
+        function createPost() {
+
+            let text =
+            document.getElementById("postText").value;
+
+            if (text == "") {
+
+                alert("Please write something!");
+
+                return;
+
+            }
+
+            let postsArea =
+            document.getElementById("postsArea");
+
+            let newPost =
+            document.createElement("div");
+
+            newPost.className = "post";
+
+            newPost.innerHTML = `
+
+                <h3>Kavibharathi</h3>
+
+                <p>${text}</p>
+
+                <button class="like-button"
+                onclick="likePost(this)">
+                    ❤️ Like
+                </button>
+
+                <span class="like-count">
+                    0 Likes
+                </span>
+
+                <div class="comment-box">
+
+                    <input type="text"
+                    placeholder="Write a comment">
+
+                    <button onclick="addComment(this)">
+                        Comment
+                    </button>
+
+                </div>
+
+                <div class="comments"></div>
+
+            `;
+
+            postsArea.prepend(newPost);
+
+            document.getElementById("postText").value = "";
+
+        }
+
+
+        function likePost(button) {
+
+            let countText =
+            button.nextElementSibling;
+
+            let count =
+            parseInt(countText.innerText);
+
+            if (button.innerText == "❤️ Like") {
+
+                count = count + 1;
+
+                button.innerText = "❤️ Liked";
+
+            } else {
+
+                count = count - 1;
+
+                button.innerText = "❤️ Like";
+
+            }
+
+            if (count == 1) {
+
+                countText.innerText = "1 Like";
+
+            } else {
+
+                countText.innerText =
+                count + " Likes";
+
+            }
+
+        }
+
+
+        function addComment(button) {
+
+            let input =
+            button.previousElementSibling;
+
+            let comment = input.value;
+
+            if (comment != "") {
+
+                let commentArea =
+                button.parentElement.nextElementSibling;
+
+                commentArea.innerHTML +=
+                "<p>💬 " + comment + "</p>";
+
+                input.value = "";
+
+            }
+
+        }
+
+
+        function showProfile(name) {
+
+            hideAll();
+
+            document.getElementById("profileSection")
+            .classList.remove("hidden");
+
+            document.getElementById("profileName")
+            .innerText = name;
+
+            document.getElementById("profileUsername")
+            .innerText =
+            "@" + name.toLowerCase() + "123";
+
+
+            let followerNumber =
+            followers.length;
+
+            let followingNumber =
+            following.length;
+
+            document.getElementById("followersCount")
+            .innerText = followerNumber;
+
+            document.getElementById("followingCount")
+            .innerText = followingNumber;
+
+
+            let button =
+            document.getElementById("followButton");
+
+            if (following.includes(name)) {
+
+                button.innerText = "Unfollow";
+
+            } else {
+
+                button.innerText = "Follow";
+
+            }
+
+
+            let posts =
+            userPosts[name];
+
+            let postArea =
+            document.getElementById("profilePosts");
+
+            postArea.innerHTML = "";
+
+
+            posts.forEach(function(post) {
+
+                postArea.innerHTML += `
+
+                    <div class="post">
+
+                        <h3>${name}</h3>
+
+                        <p>${post}</p>
+
+                        <button class="like-button"
+                        onclick="likePost(this)">
+                            ❤️ Like
+                        </button>
+
+                        <span class="like-count">
+                            0 Likes
+                        </span>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
+
+
+        let selectedUser = "";
+
+
+        function followUser() {
+
+            selectedUser =
+            document.getElementById("profileName")
+            .innerText;
+
+
+            let button =
+            document.getElementById("followButton");
+
+
+            if (following.includes(selectedUser)) {
+
+                let position =
+                following.indexOf(selectedUser);
+
+                following.splice(position, 1);
+
+                button.innerText = "Follow";
+
+            } else {
+
+                following.push(selectedUser);
+
+                button.innerText = "Unfollow";
+
+            }
+
+
+            document.getElementById("followingCount")
+            .innerText = following.length;
+
+            document.getElementById("myFollowingCount")
+            .innerText = following.length;
+
+        }
+
+
+        function showMyProfile() {
+
+            hideAll();
+
+            document.getElementById("myProfileSection")
+            .classList.remove("hidden");
+
+            document.getElementById("myFollowingCount")
+            .innerText = following.length;
+
+            let myPosts =
+            document.getElementById("myPosts");
+
+            myPosts.innerHTML = "";
+
+            let posts =
+            document.querySelectorAll("#postsArea .post");
+
+            posts.forEach(function(post) {
+
+                let name =
+                post.querySelector("h3").innerText;
+
+                if (name == "Kavibharathi") {
+
+                    myPosts.appendChild(
+                        post.cloneNode(true)
+                    );
+
+                }
+
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>
